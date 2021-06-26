@@ -1,12 +1,14 @@
 import React from 'react';
-import Positions from './Positions';
 import Heights from './Heights';
+import Positions from './Positions';
 
-const MainBuilder = () => (
-  <div>
-    <Positions />
-    <Heights />
-  </div>
-);
+function MainBuilder() {
+  return (
+    <div style={{ margin: `${100}px` }}>
+      <Positions />
+      <Heights />
+    </div>
+  );
+}
 
 export default MainBuilder;

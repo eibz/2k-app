@@ -9,6 +9,8 @@
       "node": true,
     },
     "rules": {
+      "react/jsx-one-expression-per-line": ["off"],
+      "jsx-a11y/control-has-associated-label": "off",
       "jsx-a11y/label-has-associated-control": [ "error", {
         "required": {
           "some": [ "nesting", "id"  ]
@@ -18,6 +20,6 @@
         "required": {
           "some": [ "nesting", "id"  ]
         }
-      }]
+      }],
     }
 }
