@@ -1,10 +1,11 @@
 import React from 'react';
+import Positions from './Positions';
+import Heights from './Heights';
 
 const MainBuilder = () => (
   <div>
-    Hello
-    {' '}
-    {' '}
+    <Positions />
+    <Heights />
   </div>
 );
 
