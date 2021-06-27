@@ -2,7 +2,7 @@ import React from 'react';
 import Heights from './Heights';
 import Positions from './Positions';
 
-function MainBuilder() {
+export default function MainBuilder() {
   return (
     <div style={{ margin: `${100}px` }}>
       <Positions />
@@ -10,5 +10,3 @@ function MainBuilder() {
     </div>
   );
 }
-
-export default MainBuilder;

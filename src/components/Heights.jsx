@@ -8,7 +8,7 @@ function valueLabelFormat(value) {
   return availableHeights[value];
 }
 
-function Heights() {
+export default function Heights() {
   const [value, setValue] = React.useState(1);
 
   const handleChange = (event, newValue) => {
@@ -36,5 +36,3 @@ function Heights() {
     </div>
   );
 }
-
-export default Heights;
