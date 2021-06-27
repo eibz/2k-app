@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 import { DataContext } from './dataContext';
-
-const availableHeights = ['5\'5"', '5\'6"', '5\'7"', '5\'8"', '5\'9"', '5\'10"', '5\'11"', '6\'0"', '6\'1"', '6\'2"', '6\'3"', '6\'4"', '6\'5"', '6\'7"', '6\'8"', '6\'9"', '6\'10"', '6\'11"', '7\'0"', '7\'1"', '7\'2"', '7\'3"'];
+import availableHeights from '../db/heightsObject';
 
 function valueLabelFormat(value) {
-  return availableHeights[value];
+  return availableHeights[value].label;
 }
 
 export default function Heights() {
@@ -27,8 +26,8 @@ export default function Heights() {
         value={value}
         min={0}
         step={1}
-        max={21}
-        marks
+        max={22}
+        marks={availableHeights}
         getAriaValueText={valueLabelFormat}
         valueLabelFormat={valueLabelFormat}
         onChange={handleChange}
