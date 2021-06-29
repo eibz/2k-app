@@ -1,32 +1,39 @@
 import React, { useContext } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
+import { availableHeights, heightsPerPositionRange } from '../db/heightsObject';
 import { DataContext } from './dataContext';
-import availableHeights from '../db/heightsObject';
-
-const useStyles = makeStyles(() => ({
-  formControl: {
-    margin: '50px auto',
-    maxWidth: 300,
-  },
-}));
 
 export default function Heights() {
   const appData = useContext(DataContext);
   const [value, setValue] = React.useState(1);
-  const classes = useStyles();
 
+  // this sets the label for the draggable hover thingy
   function valueLabelFormat(number) {
-    console.log(`chosen position: ${appData.position}`);
-    console.log(`positions available for chosen height: ${availableHeights[value].positions}`);
-    console.log(availableHeights[value].positions.includes(appData.position));
-    // const nanoIndexes = availableHeights.flatMap((car, i) => car === 'C' ? i : []);
-    return availableHeights[number].label;
+    if (number) {
+      return availableHeights[number].label;
+    }
+    return availableHeights[0].label;
   }
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+
+  const checkHeightForPositionMin = () => {
+    if (appData.position) {
+      const chosenHeight = appData.position;
+      return heightsPerPositionRange[chosenHeight][0];
+    }
+    return 0; // minimum
+  };
+
+  const checkHeightForPositionMax = () => {
+    if (appData.position) {
+      const chosenHeight = appData.position;
+      return heightsPerPositionRange[chosenHeight][1];
+    }
+    return 22; // TODO: can probably set it to heightsPerPositionRange.length, but it returns undefined currently
   };
 
   return (
@@ -37,16 +44,15 @@ export default function Heights() {
       <Slider
         disabled={appData.heightDisabled}
         value={value}
-        min={5}
+        min={checkHeightForPositionMin()}
         step={1}
-        max={15} // max 22
+        max={checkHeightForPositionMax()}
         marks={availableHeights}
         getAriaValueText={valueLabelFormat}
         valueLabelFormat={valueLabelFormat}
         onChange={handleChange}
         valueLabelDisplay="auto"
         aria-labelledby="non-linear-slider"
-        className={classes.formControl}
       />
       <div>{appData.position}</div>
     </div>
