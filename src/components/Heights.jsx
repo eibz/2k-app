@@ -6,7 +6,7 @@ import { DataContext } from './dataContext';
 
 export default function Heights() {
   const appData = useContext(DataContext);
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = React.useState(0);
 
   // this sets the label for the draggable hover thingy
   function valueLabelFormat(number) {
@@ -23,7 +23,7 @@ export default function Heights() {
   const checkHeightForPositionMin = () => {
     if (appData.position) {
       const chosenHeight = appData.position;
-      return heightsPerPositionRange[chosenHeight][0];
+      return heightsPerPositionRange[chosenHeight][0] - 1;
     }
     return 0; // minimum
   };

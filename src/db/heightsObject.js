@@ -2,130 +2,135 @@
 
 const availableHeights = [
   {
-    value: 0,
-    label: '5\'5"',
-    positions: ['PG'], // this KV is currently not used anywhere, but it helps to understand the heightsPerPositionRange variable
-  },
-  {
-    value: 1,
     label: '5\'6"',
     positions: ['PG'],
   },
   {
-    value: 2,
     label: '5\'7"',
     positions: ['PG'],
   },
   {
-    value: 3,
     label: '5\'8"',
     positions: ['PG'],
   },
   {
-    value: 4,
     label: '5\'9"',
     positions: ['PG'],
   },
   {
-    value: 5,
     label: '5\'10"',
     positions: ['PG'],
   },
   {
-    value: 6,
     label: '5\'11"',
     positions: ['PG'],
   },
   {
-    value: 7,
     label: '6\'0"',
     positions: ['PG', 'SG'],
   },
   {
-    value: 8,
     label: '6\'1"',
     positions: ['PG', 'SG'],
   },
   {
-    value: 9,
     label: '6\'2"',
     positions: ['PG', 'SG'],
   },
   {
-    value: 10,
     label: '6\'3"',
     positions: ['PG', 'SG'],
   },
   {
-    value: 11,
     label: '6\'4"',
     positions: ['PG', 'SG'],
   },
   {
-    value: 12,
     label: '6\'5"',
     positions: ['PG', 'SG', 'SF'],
   },
   {
-    value: 13,
     label: '6\'6"',
     positions: ['PG', 'SG', 'SF'],
   },
   {
-    value: 14,
     label: '6\'7"',
     positions: ['PG', 'SG', 'SF', 'PF'],
   },
   {
-    value: 15,
     label: '6\'8"',
     positions: ['PG', 'SG', 'SF', 'PF'],
   },
   {
-    value: 16,
     label: '6\'9"',
     positions: ['SG', 'SF', 'PF', 'C'],
   },
   {
-    value: 17,
     label: '6\'10"',
     positions: ['SF', 'PF', 'C'],
   },
   {
-    value: 18,
     label: '6\'11"',
     positions: ['PF', 'C'],
   },
   {
-    value: 19,
     label: '7\'0"',
     positions: ['PF', 'C'],
   },
   {
-    value: 20,
     label: '7\'1"',
     positions: ['C'],
   },
   {
-    value: 21,
     label: '7\'2"',
     positions: ['C'],
   },
   {
-    value: 22,
     label: '7\'3"',
     positions: ['C'],
   },
 ];
 
+// indexes the array
+availableHeights.forEach((item, index) => {
+  const arrItem = item;
+  arrItem.value = index;
+});
+
+function findHeightsPerPos(position) {
+  let minHeight;
+  let maxHeight;
+  // loop through the object
+  availableHeights.forEach((item) => {
+    // checks if the the position exists in the current iteration
+    const checkIfPosInArr = item.positions.find((currentValue) => {
+      if (currentValue === position) {
+        return true;
+      }
+      return false;
+    });
+
+    if (checkIfPosInArr) {
+      // populates minHeight in the first instance
+      if (!minHeight) {
+        minHeight = item.value;
+      } else {
+        maxHeight = item.value; // then populates maxHeight until it doesn't find any other instances
+      }
+    }
+  });
+  // finally return as array
+  return [minHeight, maxHeight];
+}
+
 // these have to correspond to the value set above
 // e.g. PG min height is 0 (5'5") and max is 15 (6'8")
 const heightsPerPositionRange = {
-  C: [16, 22],
-  PF: [14, 19],
-  SF: [12, 17],
-  SG: [7, 16],
-  PG: [0, 15],
+  C: findHeightsPerPos('C'),
+  PF: findHeightsPerPos('PF'),
+  SF: findHeightsPerPos('SF'),
+  SG: findHeightsPerPos('SG'),
+  PG: findHeightsPerPos('PG'),
 };
 
 export { availableHeights, heightsPerPositionRange };
