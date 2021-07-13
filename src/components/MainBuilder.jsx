@@ -1,6 +1,7 @@
 import React from 'react';
 import Heights from './Heights';
 import Positions from './Positions';
+import Wingspans from './Wingspans';
 import { DataProvider } from './dataContext';
 
 export default function MainBuilder() {
@@ -9,6 +10,7 @@ export default function MainBuilder() {
       <DataProvider>
         <Positions />
         <Heights />
+        <Wingspans />
       </DataProvider>
     </div>
   );

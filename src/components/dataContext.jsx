@@ -6,6 +6,7 @@ export const DataContext = createContext();
 // This context provider is passed to any component requiring the context
 export const DataProvider = ({ children }) => {
   const [heightDisabled, setHeightDisabled] = useState(true);
+  const [wingspanDisabled, setWingspantDisabled] = useState(true);
   const [position, setPosition] = useState('');
 
   return (
@@ -13,6 +14,8 @@ export const DataProvider = ({ children }) => {
       value={{
         heightDisabled,
         setHeightDisabled,
+        wingspanDisabled,
+        setWingspantDisabled,
         position,
         setPosition,
       }}

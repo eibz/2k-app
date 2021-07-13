@@ -1,4 +1,4 @@
-const availableHeights = [
+const availableWingspans = [
   {
     label: '5\'7"',
     positions: ['PG'],
@@ -83,10 +83,50 @@ const availableHeights = [
     label: '7\'3"',
     positions: ['C'],
   },
+  {
+    label: '7\'4"',
+    positions: ['C'],
+  },
+  {
+    label: '7\'5"',
+    positions: ['C'],
+  },
+  {
+    label: '7\'6"',
+    positions: ['C'],
+  },
+  {
+    label: '7\'7"',
+    positions: ['C'],
+  },
+  {
+    label: '7\'8"',
+    positions: ['C'],
+  },
+  {
+    label: '7\'9"',
+    positions: ['C'],
+  },
+  {
+    label: '7\'10"',
+    positions: ['C'],
+  },
+  {
+    label: '7\'11"',
+    positions: ['C'],
+  },
+  {
+    label: '8\'0"',
+    positions: ['C'],
+  },
+  {
+    label: '8\'1"',
+    positions: ['C'],
+  },
 ];
 
 // indexes the array
-availableHeights.forEach((item, index) => {
+availableWingspans.forEach((item, index) => {
   const arrItem = item;
   arrItem.value = index;
 });
@@ -95,7 +135,7 @@ function findHeightsPerPos(position) {
   let minHeight;
   let maxHeight;
   // loop through the object
-  availableHeights.forEach((item) => {
+  availableWingspans.forEach((item) => {
     // checks if the the position exists in the current iteration
     const checkIfPosInArr = item.positions.find((currentValue) => {
       if (currentValue === position) {
@@ -127,4 +167,4 @@ const heightsPerPositionRange = {
   PG: findHeightsPerPos('PG'),
 };
 
-export { availableHeights, heightsPerPositionRange };
+export { availableWingspans, heightsPerPositionRange };
